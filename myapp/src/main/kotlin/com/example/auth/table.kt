@@ -1,6 +1,8 @@
 package com.example.auth
 
 import io.micronaut.context.annotation.Factory
+import io.micronaut.context.event.ApplicationEventListener
+import io.micronaut.context.event.StartupEvent
 import jakarta.annotation.PostConstruct
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.Database
@@ -19,9 +21,8 @@ object Profiles : LongIdTable("profile") {
 }
 
 @Factory
-class AuthTableSetup(private val database: Database) {
-    @PostConstruct
-    fun migrateSchema() {
+class AuthTableSetup(private val database: Database)  : ApplicationEventListener<StartupEvent> {
+    override fun onApplicationEvent(event: StartupEvent?) {
         transaction(database) {
             SchemaUtils.createMissingTablesAndColumns(Identities, Profiles)
         }
