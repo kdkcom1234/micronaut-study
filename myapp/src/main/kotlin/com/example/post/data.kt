@@ -4,6 +4,7 @@ import io.micronaut.serde.annotation.SerdeImport
 
 // query-model, view-model
 // domain-model(JPA entity)
+@SerdeImport
 data class PostResponse(
     val id : Long,
     val title : String,
