@@ -8,7 +8,6 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.cookie.Cookie
 import java.net.URI
-import java.util.*
 
 @Controller("/auth")
 class AuthController(private val service: AuthService) {

@@ -1,13 +1,8 @@
 package com.example.auth
 
-import com.example.post.PostComments
-import com.example.post.PostFiles
-import com.example.post.Posts
 import io.micronaut.context.annotation.Factory
-import io.micronaut.context.event.ApplicationEventListener
 import io.micronaut.context.event.StartupEvent
 import io.micronaut.runtime.event.annotation.EventListener
-import jakarta.annotation.PostConstruct
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils

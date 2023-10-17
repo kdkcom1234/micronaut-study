@@ -4,7 +4,6 @@ package com.example.factory
 import io.micronaut.context.annotation.Factory
 import jakarta.inject.Singleton
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.DatabaseConfig
 import javax.sql.DataSource
 
 

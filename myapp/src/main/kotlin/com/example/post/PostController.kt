@@ -1,7 +1,6 @@
 package com.example.post
 
 
-import com.example.auth.Auth
 import com.example.auth.AuthProfile
 import io.micronaut.data.model.Page
 import io.micronaut.data.model.Pageable
@@ -14,7 +13,6 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.sql.Connection
 import java.time.LocalDateTime
-import java.util.*
 
 @Controller("/posts")
 open class PostController(private  val db : Database) {

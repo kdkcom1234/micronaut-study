@@ -2,11 +2,8 @@ package com.example.post
 
 import com.example.auth.Profiles
 import io.micronaut.context.annotation.Factory
-import io.micronaut.context.event.ApplicationEventListener
 import io.micronaut.context.event.StartupEvent
 import io.micronaut.runtime.event.annotation.EventListener
-import jakarta.annotation.PostConstruct
-import jakarta.inject.Singleton
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.javatime.datetime
