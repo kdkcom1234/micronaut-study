@@ -4,6 +4,7 @@ import com.example.auth.Profiles
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.event.ApplicationEventListener
 import io.micronaut.context.event.StartupEvent
+import io.micronaut.runtime.event.annotation.EventListener
 import jakarta.annotation.PostConstruct
 import jakarta.inject.Singleton
 import org.jetbrains.exposed.dao.id.LongIdTable
@@ -41,14 +42,11 @@ object PostFiles : LongIdTable("post_file") {
     val contentType = varchar("content_type", 100)
 }
 
-
-// 테이블 생성 코드
 @Factory
-class PostTableSetup (private val database: Database) : ApplicationEventListener<StartupEvent> {
-    override fun onApplicationEvent(event: StartupEvent?) {
-        println("--migrate--")
-        // expose 라이버리에서는 모든 SQL 처리는
-        // transaction 함수의 statement 람다함수 안에서 처리를 해야함
+class PostTableSetup(private val database: Database) {
+    @EventListener
+    fun onStartup(e: StartupEvent) {
+        // 백그라운드 작업 실행
         transaction(database) {
 //            addLogger(StdOutSqlLogger)
             SchemaUtils.createMissingTablesAndColumns(Posts, PostComments, PostFiles)

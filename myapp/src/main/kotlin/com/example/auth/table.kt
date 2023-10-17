@@ -1,8 +1,12 @@
 package com.example.auth
 
+import com.example.post.PostComments
+import com.example.post.PostFiles
+import com.example.post.Posts
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.event.ApplicationEventListener
 import io.micronaut.context.event.StartupEvent
+import io.micronaut.runtime.event.annotation.EventListener
 import jakarta.annotation.PostConstruct
 import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.Database
@@ -21,8 +25,10 @@ object Profiles : LongIdTable("profile") {
 }
 
 @Factory
-class AuthTableSetup(private val database: Database)  : ApplicationEventListener<StartupEvent> {
-    override fun onApplicationEvent(event: StartupEvent?) {
+class AuthTableSetup(private val database: Database) {
+    @EventListener
+    fun onStartup(e: StartupEvent) {
+        // 백그라운드 작업 실행
         transaction(database) {
             SchemaUtils.createMissingTablesAndColumns(Identities, Profiles)
         }
