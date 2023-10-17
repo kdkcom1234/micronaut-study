@@ -15,9 +15,9 @@ import java.sql.Connection
 import java.time.LocalDateTime
 
 @Controller("/posts")
-open class PostController(private  val db : Database) {
+class PostController(private  val db : Database) {
     @Get(produces = [MediaType.APPLICATION_JSON])
-    open fun fetch() = transaction(db = db,
+    fun fetch() = transaction(db = db,
         transactionIsolation = Connection.TRANSACTION_READ_UNCOMMITTED,
         readOnly = true ) {
         Posts.selectAll().map { r -> PostResponse(
